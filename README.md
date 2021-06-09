@@ -5,7 +5,7 @@
 
 ### This video will walk you through the application
 
-[![IMAGE ALT TEXT HERE](https://cdn.havecamerawilltravel.com/photographer/files/2020/01/youtube-logo-new.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+[![IMAGE ALT TEXT HERE](https://lh3.googleusercontent.com/z6Sl4j9zQ88oUKNy0G3PAMiVwy8DzQLh_ygyvBXv0zVNUZ_wQPN_n7EAR2By3dhoUpX7kTpaHjRPni1MHwKpaBJbpNqdEsHZsH4q)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 
 # Application is accessible [Here](http://pawan-conut.herokuapp.com/)
 ### Credentials
