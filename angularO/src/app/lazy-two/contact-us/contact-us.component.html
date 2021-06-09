@@ -1,0 +1,92 @@
+<div class="container animated fadeIn">
+
+    <p class="contact-us-headingg global-heading pt-4">
+        Contact Us
+    </p>
+    <p class="my-grey">
+        We will be happy to answer your questions and listen your thoughts about Us.
+        Here's how you can reach us...
+    </p>
+    <div class="row border my-margin mb-5">
+        <div class="col-12 col-md-5 p-4 theme-background">
+            <h3>
+                We’d love to hear from you
+            </h3>
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus cumque itaque sed eligendi facilis deserunt.
+            </p>
+
+        </div>
+        <div class="col-12 col-md-7 p-4">
+            <p class="call-para">call us at</p>
+            <h3 class="mobile">+91 9898989898</h3>
+            <p class="leave-para">or leave a message here</p>
+            <div class="alert my-alert-danger alert-dismissible fade show sticky-top container bounceIn"
+                [class.d-none]="unExpectedErrorAlert" role="alert">
+                <strong>Unexpected Error, Couldn't Send Your Message</strong>
+                <button type="button" class="close" (click)="unExpectedErrorAlert=true" data-dismiss="alert"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="alert my-alert-success alert-dismissible fade show sticky-top container bounceIn"
+                [class.d-none]="mailSentAlert" role="alert">
+                <strong>Your Message has been sent</strong>
+                <button type="button" class="close" (click)="mailSentAlert=true" data-dismiss="alert"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form [formGroup]="contactUsForm" (ngSubmit)=contactUsFormSubmit()>
+                <mat-form-field class="form-responsive-width pr-2">
+                    <input matInput placeholder="Name" formControlName="name" required>
+                    <mat-error *ngIf="name.touched && name.invalid && name.errors?.required">
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-responsive-width pr-2">
+                    <input matInput placeholder="Mobile" formControlName="mobile" pattern="^([6-9][0-9]{9})$" required>
+                    <mat-error *ngIf="mobile.touched && mobile.invalid && mobile?.errors?.required">
+                        mobile number is required
+                    </mat-error>
+                    <mat-error *ngIf="mobile.touched && mobile.invalid && mobile?.errors?.pattern">
+                        Invalid Mobile
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class=" form-full-width">
+                    <input matInput placeholder="Email" formControlName="email" required>
+                    <mat-error *ngIf="email.touched && email.invalid && email.errors?.required">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="email.touched && email.invalid && email.errors?.email">
+                        Please enter valid E-mail
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class=" form-full-width">
+                    <textarea matInput placeholder="Your Message" formControlName="comment" required></textarea>
+                    <mat-error *ngIf="comment.touched && comment.invalid && comment.errors?.required">
+                        required
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <button class="my-btn" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loading" class="display-1 text-center">
+    <div class="my-overlay d-flex justify-content-center align-items-center">
+        <div class="p-2">
+            <mat-spinner></mat-spinner>
+        </div>
+    </div>
+</div>

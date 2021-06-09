@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-shadoww navbar-custom " id="my-nav">
+  <a class="navbar-brand pl-2" routerLink={{homeUrl}}>
+    <span class="nav-link">Home</span>
+    <!-- <img src="/assets/images/logo2.png" class="navbar-brand-logo my-nav-logo img img-fluid" alt=""> -->
+  </a>
+  <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    &#9776;
+  </button>
+
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse p-2 w-100">
+    <ul class="navbar-nav ml-auto">
+      <li *ngIf="!isLoggedin else userBlock" class="nav-item">
+        <a class="nav-link" routerLink={{loginUrl}} (click)="isMenuCollapsed = true">Login </a>
+      </li>
+      <ng-template #userBlock>
+        <li ngbDropdown  class="nav-item" style="cursor: pointer;">
+          <a class="nav-link" id="dropdownBasic2" ngbDropdownToggle>{{userName | titlecase}}</a>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="drop-down-div">
+            <li ngbDropdownItem class="nav-item">
+              <a class="nav-link" routerLink={{profileUrl}} (click)="isMenuCollapsed = true">My Account</a>
+            </li>
+            <li ngbDropdownItem class="nav-item my-logout" >
+              <a class="nav-link"  (click)="logoutUser()">Logout</a>
+            </li>
+          </div>
+        </li>
+        
+      </ng-template>
+      <li class="nav-item">
+        <a class="nav-link" routerLink={{ordersUrl}} (click)="isMenuCollapsed = true">My Orders</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink={{aboutUrl}} (click)="isMenuCollapsed = true">About Project</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink={{contactUrl}} (click)="isMenuCollapsed = true">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<app-loader [hidden]="!loading" [data]="{type: 'full'}"></app-loader>
+<div [hidden]="loading">
+    <router-outlet></router-outlet>
+</div>
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue my-footer pt-4">
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-sm-6 mt-md-0 mt-3 text-left">
+        <p class="text-uppercase footer-para">whatsapp</p>
+        <a href="https://api.whatsapp.com/send?phone=918097253947" class="footer-cta" target="_blank" rel="noopener noreferrer">
+          <h5 class="footer-font d-flex footer-h5">
+            <img src="/assets/images/whatsapp.png" style="height: 22px; width: 22px;" class="img img-fluid mx-2" alt="whatsapp">
+              Tap to send a message
+          </h5>
+          
+        </a>
+      </div>
+
+      <div class="col-sm-6 mb-md-0 mb-3 text-left margin-sm-top">
+        <p class="text-uppercase footer-para">Email</p>
+        <a href="mailto:pawansinght20@gmail.com" class="footer-cta" target="_blank" rel="noopener noreferrer">
+          <h5 class="footer-font d-flex footer-h5">
+            <span class="material-icons mx-2">
+              email
+            </span>
+              pawansinght20@gmail.com
+          </h5>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-copyright text-center py-3">© {{copyRightYear}} Copyright: Pawan Singh</div>
+</footer>

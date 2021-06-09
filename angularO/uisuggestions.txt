@@ -1,0 +1,12 @@
+decrease card size
+
+Stick checkout tracking
+
+In product detail --> in short/long description explain about price per piece, total price, duration,size etc
+The above point can also help user when he is directly buying without going through product details page
+
+
+
+
+#for confirm password validation error
+https://itnext.io/materror-cross-field-validators-in-angular-material-7-97053b2ed0cf

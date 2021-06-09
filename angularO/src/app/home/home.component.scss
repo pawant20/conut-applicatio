@@ -1,0 +1,265 @@
+@import 'src/styles';
+
+// shoppersmood to online
+.onlineNariyal {
+    background-color: $my-secondary;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    // padding: 5px;
+}
+
+.home-bannerr{
+    // background:linear-gradient(0deg, rgba(109, 104, 104, 0.603), rgba(82, 79, 80, 0.644)), url('/assets/images/banner3.jpg');
+    background-image: 
+    linear-gradient(
+        rgba(0,0,0,0.4),
+        rgba(0,0,0,0.4)),
+        url('/assets/images/banner3.jpg');
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position: right;
+    background-size: cover;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    // height: 90vmin;
+    color: #ffffff;
+    // text-align: center;
+}
+.banner-heading-para{
+	// font-weight: bold;
+	padding-top: 2em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-align: center;
+}
+.banner-heading{
+    font-size: 6vmin;
+    font-weight: bold;
+    text-align: center;
+}
+.banner-img{
+	width: 50vmin;
+    
+}
+.banner-list{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2em;
+    // font-weight: bold;
+}
+.first-list{
+    padding-top: 3em;
+}
+.banner-del{
+    margin-top: 2.5em;
+    text-align: center;
+	font-weight: bold;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+.banner-contact{
+	font-size: 8vmin;
+	margin: 0;
+	padding: 0;
+}
+.banner-icon-container{
+	padding-top: 2.5em;
+	// padding-bottom: 2.5em;
+}
+.banner-icons{
+	// color: #006580;
+    color: #ffffff;
+	font-size: 15vmin;
+}
+.icon-text{
+	font-size: 1.2em;
+	text-align: center;
+}
+// .padding-y{
+//     // padding : 5vmin 1% 5vmin 1%;
+//     // color: #ffffff;
+// }
+
+.primary-green-color{
+    color: $my-primary;
+}
+.trial-img{
+    padding: 5%;
+}
+/* card */
+
+.home-page-cards :hover{
+    cursor: pointer;
+}
+.home-page-cards{
+    @include my-border-radius;
+    @include my-border;
+    width: 250px;
+}
+
+
+.subs-container{
+    background-color: #006580;
+    color: #ffffff;
+}
+.subs-content{
+    padding-left: 1.5em;
+}
+.my-text-lead{
+    padding-top: 3em;
+    margin-bottom: 0;
+    color:#f2f2f2;
+    font-weight: 100 !important;
+}
+.subs-heading{
+    margin-top: 0;
+    color: #ffffff !important;
+    text-align: left !important;
+}
+.subs-inner-para{
+    margin-top: 1.2em;
+    color: #ffffff;
+}
+.subs-row{
+    // position: relative;
+    // margin: 0;
+    padding: 0 !important;
+}
+.subs-container {
+    padding : 0 !important;
+    margin: 0 !important;
+    // padding: 0 0 2.5em 0 !important;
+    // margin-right: 0 !important;
+    // margin-left: 0 !important;
+    // margin-top: 0 !important;
+    // margin-bottom: em !important;
+    // padding-bottom: 2.5em;
+}
+// .subs-btn-left{
+//     margin-right: 2em;
+// }
+.subs-btn{
+    margin-bottom: 16px;
+    min-width: 110px;
+}
+// .subs-btn-container{
+//     margin-top: 1.2em;
+//     padding-bottom: 3em;
+// }
+// .subscription-bg{
+//     background-image: url('/assets/images/sub3.jpg');
+//     background-repeat: no-repeat;
+//     // background-attachment: fixed;
+//     background-position: left top;
+//     background-size: cover;
+//     padding-top: 10vmin;
+//     padding-bottom: 10vmin; 
+//     // height: 100vmin;
+//     text-align: left !important;
+// }
+
+.badge-container{
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+
+.my-card-text{
+	padding-bottom: 1em;
+}
+@mixin margin-auto {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+
+
+.main-wrapper {
+	width: 90%;
+	max-width: 900px;
+	margin: 3em auto;
+	text-align: center;
+}
+
+
+// refer and earn
+.ref-bg{
+    // background-color: $my-secondary;
+    min-height:100%;
+    background:linear-gradient(0deg, rgba(109, 104, 104, 0.603), rgba(82, 79, 80, 0.644)), url(./../../assets/images/referal.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    // background-attachment: fixed;
+    background-position: center;
+    color: #ffffff !important;
+}
+.refLinkBg{
+    background-color: $my-primary;
+    color: #ffffff;
+}
+
+.refer-table{
+    color: #ffffff;
+    width: 90vw;
+    background-color: $my-primary;
+}
+.refer-button{
+    width: 90vw;
+}
+@media (max-width: 419px){
+    .home-page-cards{
+        width: 90vw;
+    }
+}
+@media (min-width: 420px){
+    .home-banner{
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+	}
+	.banner-img{
+		display: none;
+	}
+    .subscription-bg{
+        background-position: left;
+        
+	}
+	.home-banner{
+		background-image: 
+		linear-gradient(
+			rgba(110, 107, 107, 0.507),
+			rgba(119, 114, 114, 0.514)),
+			url('/assets/images/banner4.webp');
+		background-repeat: no-repeat;
+		/* background-attachment: fixed; */
+		background-position: right;
+		background-size: cover;
+		padding-top: 3em;
+		padding-bottom: 3em;
+		// height: 90vmin;
+		color: #ffffff;
+		// text-align: center;
+	}
+
+    .refer-table{
+        width: 450px !important;
+    }
+    .refer-alert{
+        margin-left: auto;
+        margin-right: auto;
+        width: 450px;
+    }
+    .refer-button{
+        width: 450px;
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+
+    // .table-width{
+    //     width: 350px !important;
+    // }
+  }

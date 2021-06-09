@@ -1,0 +1,80 @@
+@import "src/styles";
+
+.product-card {
+    @include my-border-radius;
+    @include my-border;
+    max-width: 250px !important;
+    margin-bottom: 8vh;
+}
+.product-dtl-btn {
+    background-color: grey;
+    color: #ffffff;
+    cursor: pointer;
+}
+.product-img {
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card-content-bg {
+    background-color: #ffffff;
+}
+.card-bg {
+    background-color: #bfe7a6;
+}
+.product-btn {
+    background-color: $my-primary;
+    width: 100%;
+    color: #ffffff;
+    cursor: pointer;
+}
+.card-price-container {
+    font-size: 1.3em;
+    padding-top: 14%;
+    padding-bottom: 5%;
+}
+.card-center-div {
+    padding: 5%;
+}
+.card-center-quantity {
+    font-size: 3.1rem;
+    font-weight: 800;
+    text-align: center;
+}
+.card-center-peice {
+    margin-top: -30px;
+    text-align: center;
+}
+.tab-title {
+    color: #000000;
+    font-weight: 700;
+}
+
+.mat-radio-button .mat-accent .mat-radio-checked .mat-radio-outer-circle {
+    border-color: rgb(66, 134, 244);
+}
+
+.mat-radio-button .mat-accent .mat-radio-inner-circle {
+    color: rgb(66, 134, 244);
+    background-color: rgb(66, 134, 244);
+}
+
+.mat-radio-button .mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: rgb(255, 37, 37, 0.26);
+}
+
+@media (max-width: 540px) {
+    .product-card {
+        max-width: 80vw !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .product-img {
+        width: 40vh;
+    }
+}
+
+.fab-btn {
+    border-radius: 50%;
+    color: #ffffff;
+}

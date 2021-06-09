@@ -1,0 +1,304 @@
+<div class="alert my-alert-danger alert-dismissible fade show sticky-top 
+            bounceIn" [class.d-none]="unExpectedAlert" role="alert">
+    <strong>oops, Unexpected error occured</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="unExpectedAlert=true">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<h4 class="global-heading solid-card account-global-heading text-center">Profile</h4>
+<div class="container account-container" *ngIf="!loadingSpinner">
+
+    <div class="row border animated fadeIn mt-4">
+
+        <p *ngIf="false">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, iusto?</p>
+
+        <div *ngIf="referalData?.refered?.length>0" class="p-4 container" style="background-color: gainsboro;">
+            <h3 class="account-heading" style="color: #000000 !important;">Referral Earnings</h3>
+            <p>
+                <span class="font-weight-bold">Current amount : </span>
+                {{referalData?.wallet | currency:'INR'}}
+            </p>
+            <div class="list-groupp" *ngIf="referalData?.refered">
+                <p>List of Refered Users</p>
+                <div class="list-group-item mt-2 border" *ngFor="let data of referalData.refered">
+                    <div>
+                        Name : {{data?.name}}
+                    </div>
+                    <div>
+                        Plan : {{data?.plan}} days
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-7 p-4">
+            <div class="d-flex mb-2">
+                <h3 class="account-heading">User Info</h3>
+                <span (click)="editUserInfo()" class="edit-span">
+                    <i class="material-icons">
+                        edit
+                    </i>
+                </span>
+            </div>
+            <div class="alert my-alert-danger alert-dismissible fade show sticky-top 
+                bounceIn" [class.d-none]="updateInfoFailedAlert" role="alert">
+                <strong>oops, Couldn't update Info</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                    (click)="updateInfoFailedAlert=true">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row animated fadeIn" *ngIf="!editUserInfoUI">
+                <div class="col-sm-6">
+                    <p>
+                        <span class="font-weight-bold">Name : </span>
+                        {{updateData?.name}}
+                    </p>
+                    <p>
+                        <span class="font-weight-bold">Email : </span>
+                        {{updateData?.email}}
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <p>
+                        <span class="font-weight-bold">Mobile : </span>
+                        {{updateData?.mobile}}
+                    </p>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row animated fadeIn" *ngIf="editUserInfoUI">
+                <form (ngSubmit)="updateUserInfo()" [formGroup]="upateUserInfoForm">
+                    <mat-form-field class="form-half-width p-2">
+                        <input matInput placeholder="Name" type="text" required formControlName="name">
+                        <mat-error
+                            *ngIf="userInfoName.touched && userInfoName.invalid && userInfoName.errors?.required">
+                            Name is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="form-half-width p-2">
+                        <input matInput placeholder="Email" type="email" required formControlName="email">
+                        <mat-error *ngIf="userInfoName.touched && userInfoName.invalid && userInfoName.errors.required">
+                            Email is required
+                        </mat-error>
+                        <mat-error *ngIf="userInfoName.touched && userInfoName.invalid && userInfoName?.errors?.email">
+                            Invalid Email
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="form-half-width p-2">
+
+                        <input matInput placeholder="Mobile" type="text" required formControlName="mobile">
+                        <mat-error *ngIf="userInfoName.touched && userInfoName.invalid && userInfoName.errors.required">
+                            Password is required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="userInfoName.touched && userInfoName.invalid && userInfoName.errors.minlength">
+                            Invalid mobile Number
+                        </mat-error>
+                        <mat-error
+                            *ngIf="userInfoName.touched && userInfoName.invalid && userInfoName.errors.maxlength">
+                            Invalid mobile Number
+                        </mat-error>
+                    </mat-form-field>
+
+                    <div class="text-center">
+                        <div>
+                            <button type="submit" class="my-login-button" mat-raised-button color="primary">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="d-flex mb-2 mt-4">
+                <h3 class="account-heading">Address Info</h3>
+                <span (click)="editUserAddress()" class="edit-span">
+                    <i class="material-icons">
+                        edit
+                    </i>
+                </span>
+            </div>
+            <div class="row animated fadeIn" *ngIf="!editUserAddressUi">
+                <div class="col-sm-6">
+                    <p>
+                        <span class="font-weight-bold">Address : </span> {{updateData?.address1}}
+                    </p>
+                    <p>
+                        <span class="font-weight-bold">City : </span>
+                        {{updateData?.city}}
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <p>
+                        <span class="font-weight-bold">Zip : </span>
+                        {{updateData?.zip}}
+                    </p>
+                    <p>
+                        <span class="font-weight-bold">Landmark : </span>
+                        {{updateData?.landmark}}
+                    </p>
+                </div>
+            </div>
+            <div class="row animated fadeIn" *ngIf="editUserAddressUi">
+                <form (ngSubmit)="updateUserAddress()" [formGroup]="upateUserAddressForm">
+
+                    <mat-form-field class="form-half-width p-2">
+                        <textarea matInput placeholder="Address" type="text" required
+                            formControlName="address1"></textarea>
+                        <mat-error
+                            *ngIf="userAddress1.touched && userAddress1.invalid && userAddress1.errors?.required">
+                            Address is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="form-half-width p-2">
+                        <input matInput placeholder="city" type="text" required formControlName="city">
+                        <mat-error
+                            *ngIf="userAddressCity.touched && userAddressCity.invalid && userAddressCity.errors.required">
+                            City is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="form-half-width p-2">
+                        <input matInput placeholder="Zip" type="text" required formControlName="zip">
+                        <mat-error
+                            *ngIf="userAddressZip.touched && userAddressZip.invalid && userAddressZip.errors.required">
+                            Zip is required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="userAddressZip.touched && userAddressZip.invalid && userAddressZip.errors.minlength">
+                            Invalid Zip Code
+                        </mat-error>
+                        <mat-error
+                            *ngIf="userAddressZip.touched && userAddressZip.invalid && userAddressZip.errors.maxlength">
+                            Invalid Zip Code
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form-half-width p-2">
+
+                        <input matInput placeholder="Landmark" type="text" required formControlName="landmark">
+                    </mat-form-field>
+
+                    <div class="text-center">
+                        <div>
+                            <button type="submit" class="my-login-button" mat-raised-button color="primary">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="my-4">
+                <button (click)="updatePasswordButton()" *ngIf="updatePasswordButtonUi"
+                    class="cancle-button my-login-button" mat-raised-button color="secondary">
+                    Update password
+                </button>
+                <div class="my-card animated fadeIn" *ngIf="updatePasswordUi">
+                    <p style="color: crimson;">
+                        After successful update password you will be logged out
+                    </p>
+                    <form (ngSubmit)="updatePassword()" [formGroup]="upatePasswordForm">
+                        <mat-form-field class="form-full-width py-22">
+                            <input matInput placeholder="Current Passowrd" type="password" required
+                                formControlName="oldPassword">
+                            <mat-error
+                                *ngIf="regOldPassword.touched && regOldPassword.invalid && regOldPassword.errors?.required">
+                                Password is required
+                            </mat-error>
+                            <mat-error
+                                *ngIf="regOldPassword.touched && regOldPassword.invalid && regOldPassword.errors.minlength">
+                                Password should be atleast {{regPassword?.errors?.minlength?.requiredLength}} characters
+                            </mat-error>
+                            <mat-error
+                                *ngIf="regOldPassword.touched && regOldPassword.invalid && regOldPassword.errors.connotContainSpace">
+                                Passowrd can not contain spaces
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="form-full-width py-22">
+                            <input matInput placeholder="New Password" type="password" required
+                                formControlName="password">
+                            <mat-error
+                                *ngIf="regPassword.touched && regPassword.invalid && regPassword.errors.required">
+                                Password is required
+                            </mat-error>
+                            <mat-error
+                                *ngIf="regPassword.touched && regPassword.invalid && regPassword.errors.minlength">
+                                Password should be atleast {{regPassword.errors.minlength.requiredLength}} characters
+                            </mat-error>
+                            <mat-error
+                                *ngIf="regPassword.touched && regPassword.invalid && regPassword.errors.connotContainSpace">
+                                Passowrd can not contain spaces
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="form-full-width py-22">
+                            <input matInput placeholder="Confirm New Password" type="password" required
+                                formControlName="confirmPassword">
+                            <mat-error
+                                *ngIf="regConfirmPassword.touched && regConfirmPassword.invalid && regConfirmPassword.errors.required">
+                                Password is required
+                            </mat-error>
+                            <mat-error
+                                *ngIf="(regConfirmPassword?.touched || regConfirmPassword?.dirty)&&(regConfirmPassword?.value!==regPassword?.value)">
+                                Passowrd did not match
+                            </mat-error>
+                            <mat-error
+                                *ngIf="regConfirmPassword.touched && regConfirmPassword.invalid && regConfirmPassword.errors.minlength">
+                                Password should be atleast {{regConfirmPassword.errors.minlength.requiredLength}}
+                                characters
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div class="text-center">
+                            <div>
+
+                                <div class="alert my-alert-danger alert-dismissible fade show sticky-top bounceIn"
+                                    [class.d-none]="passwordMissMatchAlert" role="alert">
+                                    <strong>Password did not match</strong>
+                                    <button type="button" class="close" (click)="passwordMissMatchAlert=true"
+                                        data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert my-alert-danger alert-dismissible fade show sticky-top bounceIn"
+                                    [class.d-none]="IncorrectCurrentPassowrdAlert" role="alert">
+                                    <strong>Incorrect Current Passowrd</strong>
+                                    <button type="button" class="close" (click)="IncorrectCurrentPassowrdAlert=true"
+                                        data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert my-alert-danger alert-dismissible fade show sticky-top bounceIn"
+                                    [class.d-none]="unexpectedErrorUpdatePasswordAlert" role="alert">
+                                    <strong>Unexpected Error occured</strong>
+                                    <button type="button" class="close"
+                                        (click)="unexpectedErrorUpdatePasswordAlert=true" data-dismiss="alert"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <button (click)="updatePasswordButton()" class="cancle-button my-login-button"
+                                    *ngIf="!updatePasswordButtonUi" mat-raised-button color="secondary">
+                                    Cancle
+                                </button>
+                                <button type="submit" class="my-login-button" mat-raised-button color="primary">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="my-overlay d-flex justify-content-center align-items-center" *ngIf="loadingSpinner">
+    <div class="p-2">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+@import 'src/styles';
+
+.nav-link{
+    color: #000000 !important;
+}
+.navbar-brand-logo{
+    height: 50px;
+}
+.navbar-shadow{
+    -webkit-box-shadow: 0px 1px 3px 0px $my-primary;
+    -moz-box-shadow: 0px 1px 3px 0px $my-primary;
+    box-shadow: 0px 1px 3px 0px $my-primary;
+}
+
+.navbar-custom{
+    background-color: #ffffff;
+    min-height: 55px;
+    -webkit-box-shadow: 0px 12px 23px -10px rgba(0,101,128,1);
+    -moz-box-shadow: 0px 12px 23px -10px rgba(0,101,128,1);
+    box-shadow: 0px 12px 23px -10px rgba(0,101,128,1);
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.nav-link{
+    color: #000000 !important;
+    font-size: 1.1rem;
+}
+.navbar-toggler{
+    color: #000000;
+    padding: 0;
+    margin: 0;
+}
+.my-logout{
+    cursor: pointer;
+}
+.drop-down-div{
+    cursor: pointer;
+}
+.drop-down-div li :hover{
+    color: #ffffff;
+}
+
+// ##############Footer######################
+.footer-para{
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.footer-h5{
+    padding-top: 0;
+    margin-top: 0;
+}
+.page-footer{
+    background-color: #23303D !important;
+    color: #ffffff;
+}
+.footer-font{
+    font-size: 1rem;
+}
+.footer-cta, .footer-cta:visited, .footer-cta:active, .footer-cta:hover{
+    color: inherit;
+    text-decoration: none;
+}
+
+@media (max-width:576px){
+    .navbar-custom{
+        max-height: 100vh;
+    }
+    .my-nav-logo{
+        height: 45px;
+    }
+    .margin-sm-top{
+        margin-top: 2em;
+    }
+}

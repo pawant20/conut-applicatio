@@ -1,0 +1,60 @@
+<div class="container animated fadeIn">
+  <div class="calendar mt-4" *ngIf="orderData.calendarView" #calendar>
+    <div class="row px-2">
+      <div class="col-6 mt-2">
+        <span class="graph-points graph-delivered">
+        </span>
+      </div>
+      <div class="col-6 mt-2">
+        <span class="graph-points graph-skipped">
+        </span>
+      </div>
+    </div>
+    <div class="row mb-2 px-2">
+      <div class="col-6">Delivered</div>
+      <div class="col-6">Skipped</div>
+    </div>
+    <div class="calendar__navs">
+      <div class="calendar__month-nav">
+        <button class="calendar__nav-btn" (click)="prevMonth()">&lt;</button>
+        <span>{{currentDate.format('MMMM').toUpperCase()}} {{currentDate.format('YYYY')}}</span>
+        <button class="calendar__nav-btn" (click)="nextMonth()">&gt;</button>
+      </div>
+    </div>
+    <div class="calendar__month">
+      <div class="calendar__day-names">
+        <div class="calendar__day-name" *ngFor="let name of namesOfDays">{{name}}</div>
+      </div>
+      <div class="calendar__weeks">
+        <div class="calendar__week" *ngFor="let week of weeks">
+          <ng-container *ngFor="let day of week">
+            <div class="calendar__date" [ngClass]="
+                                {
+                                    'today': day.today, 
+                                    'selected': day.selected,
+                                    'skipped': day.skipped,
+                                    'delivered': day.delivered, 
+                                    'bonus' : day.bonus,
+                                    'disabled': !isSelectedMonth(day.mDate)
+                                }" (click)="selectDate(day)">
+              <span class="calendar__number">{{day.mDate.date()}}</span>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-2">
+    <p *ngIf="orderData.calendarView && orderData.editCalendar">Tap on dates to skip</p>
+    <p *ngIf="failedToSaveSkippedDelAlert" style="color: red;"> Failed to save skipped deliveries</p>
+    <button class="calendar-btn mr-4 hover-zoom" (click)='saveSkippedDeliveries()'
+      *ngIf="orderData.calendarView && orderData.editCalendar">
+      Save
+    </button>
+    <button class="calendar-btn mt-2 mb-2 hover-zoom" (click)='orderData.calendarView = orderData.editCalendar = false'
+      *ngIf="orderData.calendarView">
+      Close
+    </button>
+  </div>
+</div>

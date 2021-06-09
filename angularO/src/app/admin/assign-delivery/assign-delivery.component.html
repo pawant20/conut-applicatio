@@ -1,0 +1,107 @@
+<div class="container" *ngIf="delBoyLists">
+    <div *ngFor="let delBoy of delBoyLists">
+        <h1 class="global-heading pt-4" *ngIf="delBoy._id==delboyId">
+            {{delBoy.name}}
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p class="text-center list-headers">Assigned Orders</p>
+            <div *ngIf="unAssignedDeliveriesList; else noAssignedList">
+                <ul *ngFor="let orders of assignedDeliveryList" class=" list-group text-left">
+                    <li class="animated fadeIn list-group-item mt-2">
+                        <div class="col-6s">
+                            {{orders.name}}
+                        </div>
+                        <div class="col-6s">
+                            {{orders.mobile}}
+                        </div>
+                        <div>
+                            {{orders.address1}},{{orders.landmark}},{{orders.city}}-{{orders.zip}}
+                        </div>
+                        <button (click)="unAassigning(orders)" class="my-2 btn btn-danger">Remove</button>
+                    </li>
+                </ul>
+            </div>
+
+            <ng-template #noAssignedList>
+                <div class="text-center">
+                    <mat-spinner></mat-spinner>
+                </div>
+            </ng-template>
+        </div>
+        <div class="col-6">
+            <p class="text-center list-headers">Un assigned Orders</p>
+            <div *ngIf="unAssignedDeliveriesList; else noDelivieryList">
+                <ul *ngFor="let orders of unAssignedDeliveriesList " class="list-group mt-2">
+                    <li class="list-group-item mt-2 animated fadeIn">
+                        <!--(click)="ordersInfo(orders)" was called on Add  -->
+                        <!-- <div class="row"> -->
+                        <div class="col-6s">
+                            {{orders.name}}
+                        </div>
+                        <div class="col-6s">
+                            {{orders.mobile}}
+                        </div>
+                        <!-- </div> -->
+                        <div>
+                            {{orders.address1}},{{orders.landmark}},{{orders.city}}-{{orders.zip}}
+                        </div>
+                        <button class="my-btn my-2" (click)="assigning(orders)">Add</button>
+                        <!-- <button>Remove</button> -->
+                    </li>
+                </ul>
+            </div>
+            <!-- <p>New Un assigned Orders</p>
+
+                <div *ngFor="let orders of newUnAssignedDeliveriesList">
+                    <div>
+                        (click)="ordersInfo(orders)" was called on Add 
+                        {{orders.name}}
+                        <button class="my-btn" 
+                        (click)="assigning(orders)"
+                        >Add</button>
+                        <button>Remove</button>
+                    </div>
+                </div> -->
+
+            <ng-template #noDelivieryList>
+                <div class="text-center">
+                    <mat-spinner></mat-spinner>
+                </div>
+            </ng-template>
+        </div>
+
+
+
+    </div>
+    <div class="justify-content-center my-2 ">
+        <div class="alert my-alert-success alert-dismissible fade show sticky-top bounceIn"
+            [class.d-none]="isUpdateSuccessfulAlert" role="alert">
+            <strong>Updated successfully</strong>
+            <button type="button" class="close" (click)="isUpdateSuccessfulAlert=true" data-dismiss="alert"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="alert my-alert-danger alert-dismissible fade show sticky-top bounceIn"
+            [class.d-none]="updateFailedAlert" role="alert">
+            <strong>Update failed</strong>
+            <button type="button" class="close" (click)="updateFailedAlert=true" data-dismiss="alert"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="p-4">
+            <button class="my-btn hover-zoom" (click)="updateAssignment()">
+                Save
+            </button>
+        </div>
+    </div>
+
+</div>
+<div *ngIf="loadingSpniner" class="my-overlay d-flex justify-content-center align-items-center">
+    <div class="p-2">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>

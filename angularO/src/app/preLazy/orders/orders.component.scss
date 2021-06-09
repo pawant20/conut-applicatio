@@ -1,0 +1,18 @@
+@import 'src/styles';
+
+hr.style12 {
+	height: 6px;
+    border: 0;
+}
+.order-header{
+	text-align: left;
+	background-color: $my-primary;
+	color: #ffffff;
+}
+.list-group > li {
+	list-style-type: none;
+}
+
+.list-borderr{
+	border: thin solid;
+}

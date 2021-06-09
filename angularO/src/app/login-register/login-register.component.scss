@@ -1,0 +1,42 @@
+@import 'src/styles';
+
+//#################### card
+.my-card{
+  @include my-border-radius;
+  border : none !important;
+  max-width: 300px;
+}
+.my-card-header{
+  @include my-border-radius;
+  // background-color: #ccc;
+  background-color: $my-primary;
+  color: #ffffff;
+}
+
+@media(min-width: 576px){
+  .forgot-password-card{
+    width: 400px;
+  } 
+}
+@media(max-width: 575px){
+  .forgot-password-card{
+    width: 90vw;
+  } 
+}
+// ######################### forms
+.form-full-width{
+  width: 100%;
+}
+.my-login-button{
+  min-width: 100px;
+  color: #ffffff;
+}
+
+.tc {
+  // font-weight: 300 !important;
+  font-size: 10px;
+}
+
+
+
+  

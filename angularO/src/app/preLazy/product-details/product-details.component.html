@@ -1,0 +1,35 @@
+<div class="container animated fadeIn" *ngIf="productData; else loading">
+    <div class="row ">
+        <div class="col-md-4 col-12">
+            <div>
+                <img src={{productData.image}} class="img img-fluid product-detail-image">
+            </div>
+        </div>
+        <div class="col-md-8 col-12 mt-4">
+            <h1 class="product-detail-heading">{{productData.name | titlecase}}</h1>
+            <p>{{productData.shortDescription }}</p>
+            <h1 class="product-detail-heading">
+                <span class="">{{productData.price | currency:'INR'}}</span>
+            </h1>
+            <div class="my-2">
+                <button mat-mini-fab class="fab-btn " color="primary" (click)="decreaseQty()">
+                    <b>-</b>
+                </button>
+                <span class="mx-2"><b>{{quantity}}</b></span>
+                <button mat-mini-fab class="fab-btn " color="primary" (click)="increaseQty()">
+                    <b>+</b>
+                </button>
+            </div>
+            <button class="my-btn mt-2 hover-zoom" (click)="order()">
+                Buy
+            </button>
+            <p class="my-4">{{productData.longDescription }}</p>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="display-4 text-center">
+        loading...
+    </div>
+</ng-template>

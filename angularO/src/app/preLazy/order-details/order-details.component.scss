@@ -1,0 +1,6 @@
+@import 'src/styles';
+
+.calendar-btn {
+  @extend .my-btn;
+  width: 210px;
+}

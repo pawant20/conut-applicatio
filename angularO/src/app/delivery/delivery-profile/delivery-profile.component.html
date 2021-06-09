@@ -1,0 +1,23 @@
+<div class="container text-centerr my-4 py-5 ">
+    <div class="form-container border border-secondary">
+        <p class="global-heading">Delivery Boy Details</p>
+        <form [formGroup]="deliveryProfileFrom" class="p-4" (ngSubmit)="deliveryProfileData()">
+            <mat-form-field class="form-fields">
+                <input matInput placeholder="Name" [value]="userInfo.name" readonly>
+            </mat-form-field>
+            <mat-form-field class="form-fields">
+                <input matInput placeholder="Mobile" [value]="userInfo.mobile" readonly>
+            </mat-form-field>
+            <mat-form-field class="form-fields">
+                <input matInput placeholder="Address" formControlName="address1">
+            </mat-form-field>
+            <mat-form-field class="form-fields">
+                <input matInput placeholder="City" formControlName="city">
+            </mat-form-field >
+            <mat-form-field class="form-fields">
+                <input matInput placeholder="Zip" formControlName="zip">
+            </mat-form-field>
+            <button class="my-btn d-block text-center hover-zoom" type="submit">Submit</button>
+        </form>
+      </div>      
+</div>

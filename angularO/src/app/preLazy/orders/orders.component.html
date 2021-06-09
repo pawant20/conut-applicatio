@@ -1,0 +1,57 @@
+<div class="container">
+    <p class="global-heading pt-3">
+        My Orders
+    </p>
+    <div *ngIf="myOrder ; else loadinOrderBlock" class="animated fadeIn">
+        <ul class="list-group  py-44" *ngFor="let order of myOrder">
+            <li class="my-4 list-border border border-secondary">
+                <div class="row no-gutters order-header pt-2 pl-2 text-center">
+                    <div class="col-4 ">
+                        <p class="p-tag-height font-weight-lighter">Order Date</p>
+                        <p class="p-tag-height font-weight-bold pb-2">{{order.createdAt | date }}</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="p-tag-height">Duration</p>
+                        <p class="p-tag-height font-weight-bold">{{order.subscriptionDuration}} Days</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="p-tag-height">Status</p>
+                        <p class="p-tag-height font-weight-bold">{{order.orderStatus}}</p>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-6 text-left">
+                        <img src={{order?.image}} class="mr-3 img -img-fluid" style="width: 40vmin;"
+                            alt="product image">
+
+                    </div>
+                    <div class="col-6 text-right p-4">
+                        <button class="my-btn mt-4 hover-zoom" (click)="orderId(order._id)">
+                            Details
+                        </button>
+                    </div>
+                </div>
+                <h5 class="px-2 font-weight-bold p-tag-height">{{order.productName | titlecase}}</h5>
+                <p class="px-2">{{order.shortDescription}}</p>
+                <div class="row no-gutters border-top m-44 px-22">
+                    <p class="col-12 pt-2 text-center font-weight-bold">
+                        Quantity Left : {{order?.quantityLeft+order?.bounusLeft}} Coconut
+                    </p>
+                    <p class="col-12 text-center ">
+                        Amount : {{order.price | currency:'INR'}}
+                    </p>
+                </div>
+            </li>
+        </ul>
+        <ul class="list-group" *ngIf="myOrder.length===0">
+            <li class="list-group-item disabled p-4 m-4">No Orders</li>
+        </ul>
+    </div>
+    <ng-template #loadinOrderBlock>
+        <div class="my-overlay d-flex justify-content-center align-items-center">
+            <div class="p-2">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+    </ng-template>
+</div>

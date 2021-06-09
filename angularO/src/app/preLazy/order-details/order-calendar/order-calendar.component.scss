@@ -1,0 +1,220 @@
+@import "src/styles";
+
+$delivered: green;
+$skipped: red;
+$bonus: gold;
+.calendar {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
+  width: 270px;
+  background-color: #fff;
+  box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1), 0 4px 25px 0 rgba(0, 184, 178, 0.08);
+  border-radius: 4px;
+  z-index: 20;
+  &__wrapper {
+    position: relative;
+    margin-bottom: 17px;
+  }
+  &__input-wrapper {
+    width: 212px;
+    position: relative;
+    height: 36px;
+    cursor: pointer;
+  }
+  &__input {
+    width: 210px;
+    height: 100%;
+    outline: none;
+    border: 2px solid #dddddd;
+    border-radius: 2px;
+    padding: 0 12px;
+    font-family: OpenSans, sans-serif;
+    font-size: 13px;
+    color: #101820;
+    cursor: pointer;
+    box-sizing: border-box;
+    &:focus,
+    &:active {
+      border-color: $my-primary;
+    }
+  }
+  &__navs {
+    background-color: $my-primary;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+  &__nav-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    &[disabled] {
+      color: transparent;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+  &__month-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color: #fff;
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    span {
+      line-height: 1;
+    }
+  }
+  &__year-nav {
+    height: 100%;
+    font-size: 10px;
+    padding: 3px 40px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fff;
+    font-family: OpenSans, sans-serif;
+  }
+  &__day-names {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    background-color: $my-primary;
+    border-top: 1px solid #fff;
+    padding: 0 5px;
+  }
+  &__day-name {
+    color: #fff;
+    font-family: OpenSans, sans-serif;
+    font-size: 11px;
+  }
+  &__weeks {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    background-color: #fff;
+  }
+  &__week {
+    display: flex;
+    flex-direction: row;
+  }
+  &__date,
+  &__day-name {
+    text-align: center;
+    padding: 3px;
+    width: 14.29%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__date {
+    height: 30px;
+    position: relative;
+    &:after {
+      content: "";
+      height: 30px * 0.9;
+      width: 30px * 0.9;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      transition: all 1s;
+      z-index: 1;
+    }
+    &:hover {
+      cursor: pointer;
+      &:after {
+      }
+    }
+    &.disabled {
+      pointer-events: none;
+      color: #e0e0e0;
+    }
+    &.selected {
+      &:after {
+      }
+      &:hover {
+        &:after {
+        }
+      }
+    }
+    &.today {
+      color: #fff;
+      &:after {
+        background-color: gray;
+        box-shadow: 1px 3px 8px 2px rgba(0, 0, 0, 0.18);
+      }
+      &:hover {
+        &:after {
+          opacity: 1;
+        }
+      }
+    }
+    &.skipped {
+      color: #fff;
+      &:after {
+        background-color: $skipped;
+        box-shadow: 1px 3px 8px 2px rgba(0, 0, 0, 0.18);
+      }
+      &:hover {
+        &:after {
+          opacity: 1;
+        }
+      }
+    }
+    &.delivered {
+      color: $delivered;
+      &:after {
+        color: #fff;
+        background-color: green;
+        box-shadow: 1px 3px 8px 2px rgba(0, 0, 0, 0.18);
+      }
+      &:hover {
+        &:after {
+          opacity: 1;
+        }
+      }
+    }
+    &.bonus {
+      color: #fff;
+      &:after {
+        background-color: $bonus;
+        box-shadow: 1px 3px 8px 2px rgba(0, 0, 0, 0.18);
+      }
+      &:hover {
+        &:after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &__number {
+    z-index: 10;
+    font-size: 12px;
+    font-family: OpenSans, sans-serif;
+  }
+}
+
+.calendar-btn {
+  @extend .my-btn;
+  width: 210px;
+}
+
+.graph-points {
+  padding: 4px 14px 4px 14px;
+  border-radius: 50%;
+}
+.graph-delivered {
+  background-color: $delivered;
+}
+.graph-skipped {
+  background-color: $skipped;
+}
+.graph-bonus {
+  background-color: $bonus;
+}

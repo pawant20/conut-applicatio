@@ -1,0 +1,47 @@
+@import 'src/styles';
+
+.call-para{
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.leave-para{
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.mobile{
+  padding-top: 0;
+  margin-top: 0;
+}
+.form-responsive-width{
+    width: 100%;
+  }
+  .form-full-width{
+    width: 100%;
+  }
+  .form-half-width{
+    width: 50%;
+  }
+  
+  .contact-us-heading{
+    text-align: center;
+    font-weight: bold;
+    font-size: 3em;
+  }
+  @media (min-width: 610px){
+    .form-responsive-width{
+      width: 50%;
+    }
+    .my-margin{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+  }
+
+  @media (max-width:640px){
+    .contact-us-heading{
+      display: none;
+    }
+    .my-grey{
+      display: none;
+    }
+  }

@@ -1,0 +1,170 @@
+<!-- ##################Banner##############  -->
+<section id="banner">
+    <div class="container-fluid home-banner animated fadeIn text-center">
+        <p class="banner-heading-para">Lorem ipsum dolor sit </p>
+        <h1 class="banner-heading">
+            Lorem ipsum dolor sit amet.
+        </h1>
+        <img src="/assets/images/banner2.webp" alt="online coconut water" class="img img-fluid banner-img ">
+        <p class="banner-list first-list">
+            <b>Order Online</b>
+        </p>
+        <p class="banner-list">
+            <b>Easy Subscription</b>
+        </p>
+        <p class="banner-list">
+            <b>Lorem ipsum dolor sit.</b>
+        </p>
+        <button class="my-btn mt-4 hover-zoom" *ngIf="userLevel==1" routerLink="/delivery">Delivery Panel</button>
+        <button class="my-btn mt-4 hover-zoom" *ngIf="userLevel==2" (click)="adminClick()">Admin Panel</button>
+        <div class="d-flex justify-content-around banner-icon-container">
+            <div>
+                <i class="material-icons banner-icons">
+                    verified_user
+                </i>
+                <p class="icon-text">Reliable</p>
+            </div>
+            <div>
+                <i class="material-icons banner-icons">
+                    local_drink
+                </i>
+                <p class="icon-text">Hygenic</p>
+            </div>
+            <div>
+                <i class="material-icons banner-icons">
+                    how_to_reg
+                </i>
+                <p class="icon-text">Trusted</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ##################Subscription##############  -->
+<section id="subscription">
+    <div class="container animated fadeIn mt-4 pt-4">
+        <div class="text-center">
+            <h2 class="global-heading">Daily Delivery Plan</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, voluptatem!
+                <br>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            </p>
+        </div>
+        <div class="row  justify-content-center">
+            <div class="col-md-3 col-12 mb-4" (click)="subscrNavigationQuart()">
+                <div class="card home-page-cards effect7">
+                    <img src="/assets/images/medium.webp" class="img img-fluid" alt="...">
+                    <div class="text-center">
+                        <h5 class="card-title mb-0 pb-0">Quarterly</h5>
+                        <p class="card-textt my-card-text px-4 ">Get 10 Free</p>
+                        <button class="my-btn hover-zoom" style="margin-bottom: 15px;">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mm-2 col-md-3 col-12 mb-4" (click)="subscrNavigationMonthly()">
+                <div class="card home-page-cards effect7">
+                    <img src="/assets/images/medium.webp" class="img img-fluid" alt="...">
+                    <div class="text-center">
+                        <h5 class="card-title mb-0 pb-0">Monthly</h5>
+                        <p class="card-textt my-card-text px-4 ">Get 3 Free</p>
+                        <button class="my-btn hover-zoom" style="margin-bottom: 15px;">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ##################Regular##############  -->
+<section id="daily" class="pt-4 my-4">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="global-heading mb-4">Single Day Delivery</h2>
+        </div>
+        <div class="d-flex  justify-content-center">
+            <div class="card home-page-cards effect7 " (click)="subscrNavigationRegular()">
+                <img src="/assets/images/medium.webp" class="card-img-top img img-fluid home-cardd" alt="...">
+                <div class="text-center">
+                    <p class="card-textt my-card-text px-4">Try single order</p>
+                    <button class="my-btn hover-zoom" style="margin-bottom: 15px;">Order Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="referal" class="ref-bg mt-5 pt-5 pb-5">
+    <div class="container">
+        <div class="text-center ">
+            <h2 class="global-heading " style="color: #ffffff;">Refer &amp; Earn</h2>
+            <div class="d-flex justify-content-center">
+                <table class="table table-bordered refer-table">
+                    <tbody>
+                        <tr>
+                            <th>Referred Plan</th>
+                            <th>You'll Get</th>
+                            <th>Friends Gets</th>
+                        </tr>
+                        <tr>
+                            <td>90 Days</td>
+                            <td>{{300 | currency:'INR' : 'symbol' : '1.0-0'}}</td>
+                            <td>7 Coconuts</td>
+                        </tr>
+                        <tr>
+                            <td>30 Days</td>
+                            <td>{{100 | currency:'INR' : 'symbol' : '1.0-0'}}</td>
+                            <td>2 Coconuts</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                Refer 5 friends with 90 days plan, get 30 days subscription for FREE
+            </p>
+
+            <div>
+                <div *ngIf="notLoggedinToShareLink">
+                    <div class="alert alert-danger animated bounceIn refer-alert" role="alert"
+                        (click)="notLoggedinToShareLink=!notLoggedinToShareLink">
+                        Please login to share the link.
+                    </div>
+                </div>
+                <div *ngIf="copyToClipboardReferal" class=" p-2">
+                    <div *ngIf="!userLoginData.isLoggedin; else refLink" style="background-color: #ffffff !important;">
+                        <app-error-success-alert [data]="{type :'error' , message :'Please login to share link'}">
+                        </app-error-success-alert>
+                    </div>
+                    <ng-template #refLink>
+                        <div class="p-2 row refLinkBg flex-wrap">
+                            <div class="col-12 col-md-9">
+                                <p>{{sharableUrl}}</p>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="material-icons px-2" style="cursor: pointer;" (click)="linkCopied=true">
+                                    file_copy
+                                </div>
+                                <div *ngIf="linkCopied">
+                                    link copied
+                                </div>
+                                <div *ngIf="!linkCopied">
+                                    copy
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+                <button *ngIf="!copyToClipboardReferal" class="my-btn mt-4 hover-zoom refer-button"
+                    (click)="shareRef()"><b>Share Now</b></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="my-overlay d-flex justify-content-center align-items-center" *ngIf="lazySpinner">
+    <div class="p-2">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>

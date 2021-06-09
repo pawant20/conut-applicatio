@@ -1,0 +1,96 @@
+@import "src/styles";
+
+.whole {
+  background: #ccc;
+}
+
+// map
+agm-map {
+  height: 60vh;
+  // margin-bottom: 3em;
+}
+
+//#################### stepper card  ##############
+.my-card {
+  @include my-border-radius;
+  border: none !important;
+  // max-width: 400px;
+  width: 100%;
+  padding: 0px !important;
+  margin: 0 !important;
+}
+.my-card-body {
+  padding: 0px !important;
+  margin: 0 !important;
+}
+
+.my-card-header {
+  @include my-border-radius;
+  background-color: none;
+  // background-color: $my-primary;
+}
+
+.checkout-stpe-header {
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+}
+
+// ######################### forms
+.stepper-form {
+  padding: 3% 5% 3% 5%;
+}
+.form-responsive-width {
+  width: 100%;
+}
+.form-full-width {
+  width: 100%;
+}
+.form-half-width {
+  width: 50%;
+}
+@media (min-width: 610px) {
+  .my-stepper {
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .form-responsive-width {
+    width: 50%;
+  }
+}
+@media (max-width: 609px) {
+  .checkout-stpe-header {
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+  }
+}
+
+.solid-card {
+  background-color: $my-primary;
+  color: #ffffff;
+}
+
+@media (max-width: 400px) {
+  .my-justify-content-start {
+    -ms-flex-pack: start !important;
+    justify-content: flex-start !important;
+  }
+}
+@media (min-width: 401px) {
+  .my-justify-content-end {
+    -ms-flex-pack: end !important;
+    justify-content: flex-end !important;
+  }
+}
+
+// ##########################Stepper
+
+.my-btn {
+  background-color: $my-primary;
+}
+
+@media (max-width: 609px) {
+  .random-text {
+    display: none;
+  }
+}

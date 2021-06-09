@@ -1,0 +1,62 @@
+@import 'src/styles';
+
+
+.my-card{
+  @include my-border-radius;
+  border : none !important;
+  max-width: 400px;
+}
+.my-card-header{
+  @include my-border-radius;
+  background-color: $my-primary;
+  color: #ffffff;
+
+}
+.account-heading{
+  color: $my-primary;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+.cancle-button{
+  color: #000000 !important;
+  margin-right: 10px;
+}
+.solid-card{
+  background-color: $my-primary;
+  padding: 4%;
+  color: #ffffff;
+}
+.account-global-heading{
+  @extend .global-heading;
+  color: #ffffff !important;
+}
+
+.edit-span{
+  margin-left: auto;
+  cursor: pointer;
+}
+
+@media(min-width: 576px){
+  .forgot-password-card{
+    width: 400px;
+  } 
+  .account-container{
+    margin-top: 85px;
+  }
+}
+@media(max-width: 575px){
+  .forgot-password-card{
+    width: 90vw;
+  } 
+}
+// ######################### forms
+.form-full-width{
+  width: 100%;
+}
+.form-half-width{
+  width: 50%;
+}
+.my-login-button{
+  min-width: 100px;
+  color: #ffffff;
+}

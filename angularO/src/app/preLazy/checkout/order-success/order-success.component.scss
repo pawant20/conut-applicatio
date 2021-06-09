@@ -1,0 +1,23 @@
+@import 'src/styles';
+
+.suc-conteiner{
+    padding-top: 8vh;
+    padding-bottom: 14vh;
+}
+.suc-sub-text{
+    font-size: 3vmin;
+}
+.suc-text{
+    font-size: 6vmin;
+}
+
+.suc-icon{
+    color: $my-primary;
+    font-size: 14vmin;
+}
+
+.suc-url{
+    margin-top: 40px;
+    text-decoration: none !important;
+    color: $my-primary !important;
+}

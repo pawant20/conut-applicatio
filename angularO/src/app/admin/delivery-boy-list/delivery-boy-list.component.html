@@ -1,0 +1,25 @@
+<div class="container text-center mt-5 mb-4 py-4">
+
+    <p class="global-heading">
+        Manage Deliveries
+    </p>
+
+    <div *ngIf="delBoyLists" class="animated fadeIn">
+        <ul *ngFor="let delBoy of delBoyLists" class="list-group text-left">
+            <li class="list-group-item del-boy-list mt-2" (click)="perProf(delBoy)">
+                <div class="row">
+                    <div class="col-6">
+                        {{delBoy.name}}
+                    </div>
+                    <div class="col-6">
+                        {{delBoy.mobile}}
+                    </div>
+                </div>
+                <div>
+                    {{delBoy.address1}}, {{delBoy.landmark}}, {{delBoy.city}}-{{delBoy.zip}}
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>

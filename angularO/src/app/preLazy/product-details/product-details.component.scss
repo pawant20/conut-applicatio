@@ -1,0 +1,24 @@
+@import 'src/styles';
+
+.product-detail-heading{
+  @extend .global-heading;
+  text-align: left;
+  font-weight: 500;
+}
+.fab-btn {
+  border-radius: 50%;
+  color: #ffffff;
+}
+.tandc{
+  margin-top: 20px;
+  padding: 2.5vmax 5vmax 2.5vmax 5vmax;
+  background-color: #F7F6F2;
+}
+@media (max-width: 575.98px) { 
+  .product-detail-image{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -15px;
+    margin-bottom: -15px;
+  }
+ }

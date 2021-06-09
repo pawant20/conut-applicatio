@@ -1,0 +1,18 @@
+<div class="mts-44 p-4 my-4 referralError">
+
+    <app-error-success class="m-2" *ngIf="noRefIdAlert"
+        [data]="{type :'error' , message :'No referal code found'}">
+    </app-error-success>
+    <app-error-success class="m-2" *ngIf="onwRefAlert"
+        [data]="{type :'error' , message :'Can not use your own referal code'}">
+    </app-error-success>
+    <app-error-success class="m-2" *ngIf="invalidRefAlert"
+        [data]="{type :'error' , message :'Invalid referal code'}">
+    </app-error-success>
+    <app-error-success class="m-2" *ngIf="unexpectedAlert"
+        [data]="{type :'error' , message :'Unexpected error occured'}">
+    </app-error-success>
+
+    <button class="my-btn text-centerr m-4" routerLink="/"> home</button>
+
+</div>

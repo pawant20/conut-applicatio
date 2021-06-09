@@ -1,0 +1,228 @@
+<div class="container-fluid">
+  <!-- #########Steppper############ -->
+  <div class="d-flex justify-content-center animated fadeIn" *ngIf="productData&&userInfo ; else checkoutInitialWait">
+
+    <div class="card mt-5 mb-4 effect77" *ngIf="checkoutUi">
+      <div class="card-body my-card-body justify-content-center">
+        <mat-horizontal-stepper linear labelPosition="bottom" #stepper>
+
+          <mat-step [stepControl]="firstCheckOutForm">
+            <div class="row border my-stepper">
+              <div class="col-sm-5 solid-card">
+                <h4 class="checkout-stpe-header">Shipping Details</h4>
+                <mat-divider></mat-divider>
+              </div>
+              <div class="col-sm-7 stepper-form">
+
+                <form [formGroup]="firstCheckOutForm" (ngSubmit)=initialCheckout()>
+                  <ng-template matStepLabel>Shipping Details</ng-template>
+                  <mat-form-field class="form-responsive-width pr-2">
+                    <input matInput placeholder="Name" formControlName="name" required>
+                    <mat-error *ngIf="name.touched && name.invalid && name.errors?.required">
+                      Name is required
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class=" form-responsive-width">
+                    <input matInput placeholder="Email" formControlName="email" required>
+                    <mat-error *ngIf="email.touched && email.invalid && email.errors?.required">
+                      Email is required
+                    </mat-error>
+                    <mat-error *ngIf="email.touched && email.invalid && email.errors?.email">
+                      Please enter valid E-mail
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field class="form-full-width">
+                    <textarea matInput placeholder="address" formControlName="address1" required></textarea>
+                  </mat-form-field>
+
+                  <mat-form-field class="form-half-width pr-2">
+                    <input matInput placeholder="Mobile" formControlName="mobile" pattern="^([6-9][0-9]{9})$" required>
+                    <mat-error *ngIf="mobile.touched && mobile.invalid && mobile.errors.required">
+                      mobile number is required
+                    </mat-error>
+                    <mat-error *ngIf="mobile.touched && mobile.invalid && mobile.errors?.pattern">
+                      Invalid Mobile
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field class="form-half-width">
+                    <input matInput placeholder="LandMark" formControlName="landmark">
+                  </mat-form-field>
+
+                  <mat-form-field class="form-half-width pr-2">
+                    <input matInput placeholder="city" formControlName="city" required>
+                  </mat-form-field>
+
+                  <mat-form-field class="form-half-width">
+                    <input matInput placeholder="Zip" formControlName="zip" required>
+                  </mat-form-field>
+
+                  <p class="py-4" *ngIf="refererInfo?.refOwnerName">Refered by {{refererInfo?.refOwnerName}}</p>
+                  <div class="d-flex justify-content-end">
+                    <div>
+                      <button matStepperNext class="my-btn hover-zoom" (click)="initialCheckout()">Next</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </mat-step>
+
+
+          <mat-step [stepControl]="secondCheckOutForm">
+            <div class="row border my-stepper">
+              <div class="col-sm-5 solid-card">
+                <h4 class="checkout-stpe-header">Location</h4>
+                <mat-divider></mat-divider>
+                <p class="random-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam beatae quaerat
+                  asperiores illo eaque inventore! Nisi eius omnis numquam culpa.</p>
+                <p class="random-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt cumque, ea corrupti
+                  ad magnam temporibus.</p>
+                <p class="random-text">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+              </div>
+              <div class="col-sm-7 stepper-form">
+                <div>
+                  <agm-map [latitude]="mapConfig.lat" [zoom]="mapConfig.zoom" [longitude]="mapConfig.lng"
+                    (mapClick)="clickUpdateMarker($event.coords.lat, $event.coords.lng)">
+                    <agm-marker [latitude]="mapConfig?.location.lat" [longitude]="mapConfig?.location.lng"
+                      [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
+                    </agm-marker>
+                  </agm-map>
+                  <div class="alert my-alert-danger alert-dismissible fade show sticky-top bounceIn mt-time"
+                    *ngIf="currentLocationErrorAlert == true" role="alert">
+                    <strong>Point your location manually</strong>
+                    <button type="button" class="close hover-zoom" (click)="currentLocationErrorAlert=false"
+                      data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <button class="mt-2 my-btn hover-zoom" (click)="setCurrentPosition()"> Set Current Location</button>
+                </div>
+                <div>
+                  <form [formGroup]="secondCheckOutForm">
+                    <ng-template matStepLabel>Delivery Time</ng-template>
+                    <mat-form-field class="form-full-width p-2 pt-3">
+                      <mat-label>Delivery time</mat-label>
+                      <mat-select formControlName="deliveryTime" required>
+                        <mat-option selected value="Morning(7-10 AM)">
+                          7 AM - 10 AM
+                        </mat-option>
+                        <mat-option value="Evening(8-10 PM)">
+                          Evening(8-10 PM)
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="form-full-width p-2">
+                      <textarea matInput placeholder="Additional comment" formControlName="additionalNote"></textarea>
+                      <mat-hint>Your additional comment regarding Delivery time or Anything</mat-hint>
+                    </mat-form-field>
+                  </form>
+                </div>
+                <div class="alert my-alert-danger alert-dismissible fade show sticky-top bounceIn"
+                  *ngIf="setLocatioAlert == true" role="alert">
+                  <strong>Please set Your Location</strong>
+                  <button type="button" class="close hover-zoom" (click)="setLocatioAlert=false" data-dismiss="alert"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                  <div>
+                    <button matStepperPrevious class="my-btn hover-zoom" color="primary">Back</button>
+                  </div>
+                  <div>
+                    <button matStepperNext class="my-btn hover-zoom" (click)="secondformCheckout()"
+                      color="primary">Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-step>
+
+
+          <mat-step>
+            <ng-template matStepLabel>Summary</ng-template>
+            <div class="row border">
+              <div class="col-sm-5 solid-card">
+                <h4 class="checkout-stpe-header">Shipping details</h4>
+                <mat-divider></mat-divider>
+
+                <p>{{orderData?.name}}</p>
+                <p>{{orderData?.mobile}}</p>
+                <p>{{orderData?.email}}</p>
+                <mat-divider></mat-divider>
+                <h5>Address</h5>
+                <p>
+                  {{orderData?.address1}}, {{orderData?.city}},Zip-{{orderData?.zip}}
+                </p>
+                <p>{{orderData?.landmark}}</p>
+                <p>Delivery Time : {{orderData?.deliveryTime}}</p>
+              </div>
+              <div class="col-sm-7 light-card p-4" style="background-color: white;">
+                <div class="d-flex flex-nowrap align-items-center">
+                  <div class="text-center">
+                    <img src={{productData?.image}} class="img img-fluid" style="max-width: 140px;" alt="">
+                    <h5 class="py-2">{{orderData?.productName}}</h5>
+                  </div>
+                  <div class="text-left">
+                    <p>
+                      {{productData?.shortDescription}}
+                    </p>
+                  </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="row">
+                  <div class="col d-flex">
+                    <div class="pr-4">
+                      <p>Quantity</p>
+                      <p>Bonus</p>
+                      <p>Delivery </p>
+                    </div>
+                    <div class="px-4">
+                      <p>{{quantity}}.</p>
+                      <p>{{orderData?.bounusLeft}}.</p>
+                      <p>{{checkoutDuration+orderData?.bounusLeft}} Coconuts</p>
+                    </div>
+                  </div>
+                  <div class="col d-flex my-justify-content-end my-justify-content-start">
+                    <div class="pr-4">
+                      <p>Sub total</p>
+                      <p>tax</p>
+                      <h4>Total</h4>
+                    </div>
+                    <div class="px-4">
+                      <p>{{checkoutPrice| currency:'INR'}}.</p>
+                      <p>0</p>
+                      <h4>{{checkoutPrice | currency:'INR'}} </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between pb-2">
+                  <div>
+                    <button class="my-btn hover-zoom" matStepperPrevious>Back</button>
+                  </div>
+                  <div>
+                    <button class="my-btn hover-zoom" (click)="finalCheckOut()">Place Order</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </div>
+    </div>
+
+    <app-order-success *ngIf="orderSuccessUi"></app-order-success>
+    <app-order-failed *ngIf="orderFailedUi"></app-order-failed>
+  </div>
+
+
+  <ng-template #checkoutInitialWait>
+    <div class="my-overlay d-flex justify-content-center align-items-center">
+      <div class="p-2">
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+  </ng-template>
+</div>

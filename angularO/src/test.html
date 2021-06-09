@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+      <title>
+        <p>New Order</p>
+      </title>
+      <style>
+        body {
+            /* color: #ffffff; */
+            /* background-color: #60C322; */
+        }
+        .container-fluid{
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .row {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+            }
+        .heading{
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #60C322;
+        }
+        /* .col-6{
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        } */
+        .col-6{
+            width: 100%;
+            /* padding-right: 15px;
+            padding-left: 15px; */
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+        .img-fluid {
+            max-width: 100%;
+            max-height: 12vmin;
+        }
+        .my-img{
+            /* margin-left: auto;
+            margin-right: auto; */
+            background-color: #23303D;
+        }
+        .image-container{
+            margin-left: auto;
+            margin-right: auto; 
+            text-align: center;
+            background-color: #23303D;
+        }
+        hr.solid {
+            border-top: 1px solid #000000;
+        }
+      </style>
+    </head>
+    <body>
+    <div class="container-fluid">
+        <div class="image-container">
+            <img src="./assets/images/logo.png" class="my-img img-fluid" alt="">
+        </div>
+        <p>
+            order from {{{Name}}} recieved at {{{Created Time}}}</p>
+        <h1 class="heading">
+          Product
+        </h1>
+        <div class="row">
+            <div class="col-6">
+              <p>
+                  Product Name: {{{Pname}}}
+              </p>
+              <p>
+                  Desc : {{{desc}}}
+              </p>
+            </div>
+            <div class="col-6">
+              <p>
+                  Subscription Duration: {{{Pname}}}
+              </p>
+              <p>
+                  Category : {{{malai/pani}}}
+              </p>
+              <p class="heading">
+                  Price {{{price}}}
+              </p>
+            </div>
+        </div>
+        <hr class="solid">
+        <h1 class="heading">
+            Billing Address
+        </h1>
+        <div class="row">
+            <div class="col-6">
+                <p>
+                    {{{Name}}}
+                </p>
+                <p>
+                    {{{address1}}},{{{city}}}-{{{zip}}}
+                </p>
+                <p>
+                    Landmark : {{{Landmark}}}
+                </p>
+                <p>
+                    Email {{{email}}}
+                </p>
+                <p>
+                    Mobile {{{Mobile}}}
+                </p>
+            </div>
+            <div class="col-6">
+                <p>
+                    Additional Note : {{{notes}}}
+                </p>
+                <p>
+                    Delivery Time : {{{malai/pani}}}
+                </p>
+            </div>
+        </div>
+        <p class="heading" style="text-align: center;">
+            Thank you
+        </p>
+    </div>
+
+    </body>
+</html>
+
+

@@ -1,0 +1,64 @@
+<section id="productPage">
+    <div class="container-fluid animated fadeIn"
+        *ngIf="productsToDisplay.length>0&&category === 'coconut'; else loadingProducts">
+        <p class="global-heading px-4 pt-4 pb-1">{{productsToDisplay[0].subscriptionDuration}} Day Plan</p>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-12 col-md-3" *ngFor="let product of productsToDisplay">
+                <div class="card product-card effect7 text-center card-bg">
+                    <div class="card-center-div animated fadeIn card-content-bg">
+                        <p class="card-center-quantity">
+                            {{product.price | currency:'INR' : 'symbol' : '1.0-0'}}
+                        </p>
+                        <p class="card-center-peice" *ngIf="product.subscriptionDuration">for
+                            {{product.subscriptionDuration}} days</p>
+                    </div>
+                    <div class="card-bodyy text-center animated fadeIn card-content-bg">
+                        <h5 class="card-title">{{product.name | titlecase}}</h5>
+                        <p *ngIf="product.subscriptionDuration && false">
+                            <b>
+                                {{product.price | currency:'INR' : 'symbol' : '1.0-0'}} for
+                                {{product.subscriptionDuration}} days
+                            </b>
+                        </p>
+                        <p *ngIf="!product.subscriptionDuration">
+                            <b>
+                                {{product.price | currency:'INR' : 'symbol' : '1.0-0'}}
+                            </b>
+                        </p>
+                        <mat-radio-group color=primary aria-labelledby="example-radio-group-label"
+                            [(ngModel)]="selectedCoconut">
+                            <mat-radio-button class="example-radio-button px-2"
+                                *ngFor="let season of coconutCategoryOptions" [value]="season">
+                                <span *ngIf="season=='pulp'">with</span> {{season}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                        <button mat-stroked-button color="primary" class="mx-2 mb-2"
+                            (click)="selectedProduct(product)">View Details</button>
+                        <div class="my-2">
+                            <button mat-mini-fab class="fab-btn " color="primary" (click)="decreaseQty()">
+                                <b>-</b>
+                            </button>
+                            <span class="mx-2"><b>{{quantity}}</b></span>
+                            <button mat-mini-fab class="fab-btn " color="primary" (click)="increaseQty()">
+                                <b>+</b>
+                            </button>
+                        </div>
+                        <div class="product-btn p-2" (click)="order(product)">
+                            Buy
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--spin loader -->
+<ng-template #loadingProducts>
+    <div class="my-overlay d-flex justify-content-center align-items-center">
+        <div class="p-2">
+            <mat-spinner></mat-spinner>
+        </div>
+    </div>
+</ng-template>

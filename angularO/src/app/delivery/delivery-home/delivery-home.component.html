@@ -1,0 +1,93 @@
+<div class="container text-center pt-5">
+    <button class="my-btn hover-zoom" *ngIf="isProfileButton" (click)="createRoute()">
+        Create Delivery Profile
+    </button>
+    <div *ngIf="assignedDeliveriesList; else loading">
+        <div *ngIf="assignedDeliveriesList.length>0; else noorder">
+            <h1>Delivery List</h1>
+            <button class="my-btn mr-2" (click)="todayDateDelivery()" [ngClass]="{'highlight-date': !isToday}">
+                {{todayDate | date:'MMM, dd'}}
+            </button>
+            <button class="my-btn ml-2" (click)="tomorrowDateDelivery() " [ngClass]="{'highlight-date': isToday}">
+                {{tommorrowDate| date:'MMM, dd'}}
+            </button>
+            <ul class="list-group text-left mt-2" *ngFor="let order of assignedDeliveriesList">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">
+                            {{order.name}}
+                        </div>
+                        <div class="col-6">
+                            {{order.mobile}}
+                        </div>
+                    </div>
+                    <p>
+                        {{order.address1}},
+                        {{order.landmark}},
+                        {{order.city}}-
+                        {{order.zip}}
+                    </p>
+                    <div class="row">
+                        <div class="col-6">
+                            <p>
+                                {{order.productName}}
+                            </p>
+                            <p>
+                                {{order.deliveryTime}}
+                            </p>
+                            <p>
+                                {{order.quantityLeft + order.bounusLeft}}
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p>
+                                category : {{order.category}}
+                            </p>
+                            <p>
+                                Note : {{order.additionalNote}}
+                            </p>
+                            <p *ngIf="order?.location?.lat != 0">
+                                <button class="my-btn"
+                                    (click)="mapNavigate(order?.location.lat,order?.location.lng)">Direction</button>
+                            </p>
+                        </div>
+                    </div>
+                    <span *ngIf="isDeliveredToday(order._id, order.deliverdDates); else delButton"
+                        class="material-icons theme-color text-right" style="font-size: 44px;">
+                        check_circle
+                    </span>
+                    <ng-template #delButton>
+                        <button class="my-btn text-right" [disabled]="!isToday"
+                            [ngClass]="{'delivery-disabled': !isToday}"
+                            (click)="delivered(order._id)">Delivered</button>
+                    </ng-template>
+                </li>
+            </ul>
+        </div>
+
+        <div class="my-4" *ngIf="allUserMap">
+            <h3>Customers Locations</h3>
+            <agm-map [latitude]="mapConfig.lat" [zoom]="mapConfig.zoom" [longitude]="mapConfig.lng">
+                <agm-marker *ngFor="let marker of mapConfig.markers" [latitude]="marker.lat" [longitude]="marker.lng">
+                    <agm-info-window [disableAutoPan]="true">{{marker.label}}</agm-info-window>
+                </agm-marker>
+            </agm-map>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="display-1 text-center">
+        <div class="my-overlay d-flex justify-content-center align-items-center">
+            <div class="p-2">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #noorder>
+    <div class="display-4 text-center my-4">
+        No Orders
+    </div>
+</ng-template>

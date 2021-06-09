@@ -1,0 +1,113 @@
+<div class="container">
+
+    <p class="global-heading pt-4">
+        All Orders
+    </p>
+
+    <div *ngIf="allOrders" class="animated fadeIn">
+        <h5 class="font-weight-bold">Total Orders : {{allOrders.length}}</h5>
+        <ul class="list-group mb-4" *ngFor="let order of allOrders; let i = index">
+            <div class="border">
+                <div class="order-header p-2">
+                    <h4>
+                        {{order?.name | titlecase}}, Order no. {{i+1}}
+                    </h4>
+                </div>
+                <div class="row p-4">
+                    <div class="col-12 col-sm-6">
+                        <p>{{order?.productName}}</p>
+                        <p>Duration : {{order?.subscriptionDuration}} Days.</p>
+                        <p>{{order?.deliveryTime}}</p>
+                        <p *ngIf="order.additionalNote">
+                            <span class="font-weight-bold">
+                                Additional note
+                            </span>
+                            {{order?.additionalNote}}
+                        </p>
+                        <p>{{order?.price | currency:'INR'}}</p>
+                    </div>
+                    <div class="col-12 col-sm-6 text-left">
+                        <p>
+                            {{order?.address1}},
+                            {{order?.city}},
+                            {{order?.zip}},
+                            {{order?.landmark}},
+                            {{order?.mobile}},
+                            {{order?.email}}
+                        </p>
+                        <p>{{order?.createdAt | date:'medium'}}</p>
+                    </div>
+                </div>
+
+                <div class="alert my-alert-danger alert-dismissible fade show sticky-top bounceIn"
+                    *ngIf="UpdateOrderStatusFailed&&order._id===clickedOrderId" role="alert">
+                    <strong>Failed to update Order Status</strong>
+                    <button type="button" class="close" (click)="UpdateOrderStatusFailed=false" data-dismiss="alert"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="alert my-alert-danger alert-dismissible fade show sticky-top bounceIn"
+                    *ngIf="DeliveredOrderStatusFailed&&order._id===clickedOrderId" role="alert">
+                    <strong>Failed to send Order delivered mail</strong>
+                    <button type="button" class="close" (click)="DeliveredOrderStatusFailed=false" data-dismiss="alert"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="alert my-alert-danger alert-dismissible fade show sticky-top bounceIn"
+                    *ngIf="CancelOrderStatusMailFailed&&order._id===clickedOrderId" role="alert">
+                    <strong>Failed to send Order canceled mail</strong>
+                    <button type="button" class="close" (click)="CancelOrderStatusMailFailed=false" data-dismiss="alert"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="px-4 mb-4 text-left">
+                    <mat-form-field class="mr-4">
+                        <mat-label>Order status</mat-label>
+                        <mat-select [disabled]="order.orderStatus==='canceled'" [(value)]="order.orderStatus">
+                            <mat-option value="confirmed">confirmed</mat-option>
+                            <mat-option value="awaiting">awaiting</mat-option>
+                            <mat-option value="completed">completed</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button type="button" class="btn-success btn" [disabled]="order.orderStatus==='canceled'"
+                        (click)="allOrderClick(order._id,order.orderStatus)">
+                        submit
+                    </button>
+                    <button type="button" class="btn-danger btn ml-4" [disabled]="order.orderStatus==='canceled'"
+                        (click)="open(cancelOrderConfirmation,order._id)">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <div *ngIf="loadingSpniner" class="my-overlay d-flex justify-content-center align-items-center">
+        <div class="p-2">
+            <mat-spinner></mat-spinner>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #cancelOrderConfirmation let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Order Cancellation</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="display-4">Are you sure?</p>
+        <p class="lead">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora adipisci veritatis provident corrupti quas
+            optio.
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger px-4" (click)="confirmCancellation()">Confirm Cancellation</button>
+    </div>
+</ng-template>

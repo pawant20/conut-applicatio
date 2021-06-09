@@ -1,0 +1,26 @@
+<div class="alert  my-2 my-alert-danger alert-dismissible fade show 
+        sticky-top bounceIn" 
+        [class.d-none]="hideAlert" 
+        role="alert"
+        *ngIf="data.type === 'error'">
+    <strong>{{data.message}}</strong>
+    <button type="button" 
+            class="close" 
+            (click)="hideAlert=true" 
+            data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="alert my-2 my-alert-success alert-dismissible fade show sticky-top bounceIn" 
+     [class.d-none]="hideAlert" 
+     role="alert"
+     *ngIf="data.type === 'success'">
+    <strong>{{data.message}}</strong>
+    <button type="button" 
+            class="close" 
+            (click)="hideAlert=true" 
+            data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>

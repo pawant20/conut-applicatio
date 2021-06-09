@@ -1,0 +1,67 @@
+<div *ngIf="orderData && orderData.skippedDates" class="container my-4 animated fadeIn">
+    <div class="container">
+        <!-- ######################calendar#################### -->
+        <h1 class="global-heading pt-4">
+            {{orderData?.subscriptionDuration}} Days Plan
+        </h1>
+        <div class="my-2 border p-2" style="max-width: 435px; margin-left: auto; margin-right: auto;">
+            <div class="d-flex justify-content-between">
+                <div>Start Date</div>
+                <div>{{orderData.startDate | date}}</div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div>Quantity Left</div>
+                <div>{{orderData.quantityLeft}}</div>
+            </div>
+            <div *ngIf="orderData.bounusLeft>0" class="d-flex justify-content-between">
+                <div>Bonus Left Left</div>
+                <div>{{orderData.bounusLeft}}</div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div>Order Date</div>
+                <div>{{orderData.createdAt | date}}</div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div>Amount Paid</div>
+                <div>{{orderData.price | currency:'INR'}}</div>
+            </div>
+        </div>
+
+        <div class="text-center animated fadeIn p-2">
+            <button class="calendar-btn mx-2 hover-zoom" *ngIf="!orderData.calendarView" (click)="viewCalendarUi()">
+                View Calendar
+            </button>
+            <button class="calendar-btn mt-2 mx-2 hover-zoom" *ngIf="!orderData.calendarView"
+                (click)="editCalendarUi()">
+                Skip Deliveries
+            </button>
+            <p class="pt-2">Delivery time : {{orderData?.deliveryTime}}</p>
+            <app-order-calendar [orderData]="orderData"></app-order-calendar>
+        </div>
+        <div class="contener-fluid border border-secondary"
+            style="max-width: 420px; margin-left: auto; margin-right: auto;"></div>
+        <div style="max-width: 420px; margin-left: auto; margin-right: auto;">
+
+            <h5 class="pt-2">User Details</h5>
+            <div class="font-weight-bold">{{orderData?.name}},</div>
+            <div>{{orderData?.mobile}}</div>
+            <div>{{orderData?.email}}</div>
+            <div>
+                {{orderData?.address1}},
+                {{orderData?.landmark}},
+                {{orderData?.city}}-
+                {{orderData?.zip}}
+            </div>
+
+            <div *ngIf="orderData.additionalNote">
+                Additional note : {{orderData?.additionalNote}}
+            </div>
+        </div>
+    </div>
+    <div class="display-1 text-center" *ngIf="!(orderData && orderData.skippedDates)">
+        <div class="my-overlay d-flex justify-content-center align-items-center">
+            <div class="p-2">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+    </div>
